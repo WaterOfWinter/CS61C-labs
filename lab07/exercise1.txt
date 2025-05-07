@@ -1,0 +1,27 @@
+Scenario 1
+    1. [cache size], [array size]
+    2. 0
+    3. [Array size], [32]
+	[step size], [1]
+
+
+Scenario 2
+    1. 2
+    2. MH
+    3. 1
+
+Scenario 3
+    1. [0.5] [0.0] [0.5]
+    2. We have 32 accesses to L1 cache in total. 16 of them are missed.
+    3.We have 16 accesses to L2 cache in total. They are the missed accesses to L1 cache.
+    4. [Rep Count]
+	重复遍历多次后，L2 会在第一次遍历时把所有 16 块装满，后续的每个 L1 miss（共 16 次/遍）都会 hit L2
+    5. (1) it has no effect on the L1_HR and L2_HR when we increase the number of blocks in L1. (2) the L1_HR will increase when we increase the block size of L1 cache, but the L2_HR will not be affected
+
+--- lines below are ignored by the AG ---
+
+Checkoff Question 1:
+Checkoff Question 2:
+Checkoff Question 3:
+Checkoff Question 4:
+Checkoff Question 5:

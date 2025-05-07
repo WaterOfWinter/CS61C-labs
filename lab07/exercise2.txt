@@ -1,0 +1,37 @@
+1. [jki](14.267) [kji](12.668)
+2. [ikj], [kij]
+ijk:    n = 1000, 2.692 Gflop/s
+ikj:    n = 1000, 1.032 Gflop/s
+jik:    n = 1000, 2.749 Gflop/s
+jki:    n = 1000, 14.267 Gflop/s
+kij:    n = 1000, 1.029 Gflop/s
+kji:    n = 1000, 12.668 Gflop/s
+
+--- lines below are ignored by the AG ---
+
+Checkoff Question 1:  Less stride in the innermost loop, the better it is.
+Checkoff Question 2:  More stride in the innermost loop, the worse it is.
+Checkoff Question 3: More stride in the innermost loop, the worse it is.
+1. 计算机的内存访问和缓存工作方式
+内存是按 缓存块（cache line） 加载到 CPU 缓存中的。
+一个缓存块可能有 64 字节，这意味着一次加载可以带入 16 个 float（如果每个 float 是 4 字节）。
+如果内存访问是 连续的，CPU 可以一次加载一整块，然后下一次访问直接从缓存里拿，
+→ 缓存命中率高，速度快。
+如果内存访问是 跨块跳跃的（stride 很大），每次都可能要从主内存加载新块，
+→ 缓存命中率低，速度慢。
+2.  最内层循环决定了访问模式
+最内层循环跑得最快、次数最多 → 它对性能的影响最大。
+
+如果最内层的索引对应的是连续内存位置，
+→ 访问是 顺序的，缓存友好。
+
+如果最内层的索引对应的是跨列、跨行跳的访问，
+→ 访问是 跳跃的，缓存利用率低。
+最内层循环的访问模式直接决定了：
+
+是否高缓存命中率；
+
+是否有预取效应；
+
+是否出现频繁的 cache miss。
+

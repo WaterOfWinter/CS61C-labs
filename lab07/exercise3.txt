@@ -1,0 +1,20 @@
+--- not autograded ---
+
+Part 1
+    blocksize = 20, n = 100:  0.006 milliseconds VS 0.006 milliseconds
+    blocksize = 20, n = 1000: 0.839 milliseconds VS 0.729 milliseconds
+    blocksize = 20, n = 2000:  15.037 milliseconds VS 3.053 milliseconds
+    blocksize = 20, n = 5000:  171.077 milliseconds VS 30.033 milliseconds
+    blocksize = 20, n = 10000: 928.672 milliseconds VS 116.951 milliseconds
+
+    Checkoff Question 1:  blocksize = 20, n = 1000
+    Checkoff Question 2: (1) 小矩阵完全装得下缓存  (2) 循环控制开销-->cache blocking 多了两层外循环（block 的 i, j 循环），对于小矩阵来说：循环拆分、分块带来的 CPU 指令执行开销，可能比缓存优化节省的时间还大, 反而会拖慢程序
+
+Part 2
+    blocksize = 50, n = 10000: 607.021milliseconds VS  167.501 milliseconds
+    blocksize = 100, n = 10000:  539.104 milliseconds VS 93.932 milliseconds
+    blocksize = 500, n = 10000:  562.368 milliseconds VS 81.455 milliseconds
+    blocksize = 1000, n = 10000:  612.144 milliseconds VS 146.1 milliseconds
+    blocksize = 5000, n = 10000:  566.915 milliseconds VS 385.435 milliseconds
+
+    Checkoff Question 3: 随着 blocksize 增大，程序的性能一开始提升，因为较大的块能提高缓存局部性，减少缓存未命中。但当 blocksize 超过一定值（如 1000）时，性能开始下降，因为单个块占用的缓存空间太大，导致缓存失效（cache thrashing），使得缓存命中率下降，反而拖慢了速度。因此性能呈现出“先升后降”的趋势。
