@@ -1,0 +1,39 @@
+Exercise 1:
+    1. 4
+    2. 4,6,0,6
+    3. No,Yes
+
+Exercise 2:
+    1.00,20,40,60,80,A0,C0,E0,00,20
+
+Exercise 3:
+    1.
+
+--- lines below are ignored by the AG ---
+
+Exercise 1 Checkoff Questions:
+    1.The system first checks the TLB (Translation Lookaside Buffer) for the corresponding virtual page number (VPN);
+
+If the entry is not found (TLB Miss), it consults the page table;
+
+If the page table entry is marked as invalid (Valid bit = 0), this triggers a Page Fault because the page is not currently in physical memory;
+
+The operating system handles the fault by allocating a free physical frame;
+
+It loads the required page from disk (usually the swap area) into that physical frame;
+
+The page table is updated with the new frame number, and the Valid bit is set to 1;
+
+The new mapping (VPN to frame number) is also inserted into the TLB;
+
+The instruction that caused the fault is then restarted, and the virtual address can now be translated to a physical address successfully.
+    2.The reason the physical address has only 2 bits for the Physical Page Number (PPN), while the virtual address has 3 bits for the Virtual Page Number (VPN), is:
+
+Virtual memory space is larger than physical memory space. The virtual address space is designed to be much larger than the actual physical memory to allow processes the illusion of having more memory than physically available.
+
+Fewer physical page frames. If there are only 4 physical frames, we only need 2 bits (2² = 4) to identify them. But virtual memory may have 8 pages, requiring 3 bits for VPN.
+
+Hierarchical page tables are a consequence of large virtual address spaces, not the cause. They are used to efficiently manage large page tables, which are needed precisely because VPNs have more bits.
+
+Exercise 4 Checkoff Question:
+    1.
